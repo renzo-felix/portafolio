@@ -41,7 +41,7 @@ const skills = [
     { name: "Postman", level: 85 }
   ]}
 ]
-
+/*dncjasbdchkbasdihlc */
 export function Skills() {
   return (
     <section className="py-20">
