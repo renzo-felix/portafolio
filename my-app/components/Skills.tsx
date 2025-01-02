@@ -1,19 +1,20 @@
-'use client'
-
 import { Code, PenToolIcon as Globe, Terminal } from 'lucide-react'
 import { useEffect, useState } from 'react'
+
 // Define the Skill type
 type Skill = {
   name: string;
   level: number; // Assuming level is a percentage (0-100)
 }
 
+// Modify the SkillCardProps to use ElementType for icon
 type SkillCardProps = {
-  icon: React.ComponentType<{ size: number }>;
+  icon: React.ElementType;  // This accepts any valid React component, including icons from lucide-react
   category: string;
   color: string;
   items: Skill[];
 }
+
 const skills = [
   { category: "Lenguajes", icon: Code, color: "bg-blue-500", items: [
     { name: "Python", level: 90 },
@@ -54,7 +55,7 @@ export function Skills() {
   )
 }
 
-function SkillCard({ icon: Icon, category, color, items }: SkillCardProps ) {
+function SkillCard({ icon: Icon, category, color, items }: SkillCardProps) {
   const [animate, setAnimate] = useState(false)
 
   useEffect(() => {
@@ -87,4 +88,3 @@ function SkillCard({ icon: Icon, category, color, items }: SkillCardProps ) {
     </div>
   )
 }
-
