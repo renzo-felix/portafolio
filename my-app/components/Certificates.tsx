@@ -4,8 +4,17 @@ import { Award, ExternalLink, X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
+// Define the type for the certificate object
+type Certificate = {
+  title: string;
+  institution: string;
+  date: string;
+  image: string;
+  description: string;
+  links: { text: string; url: string }[];
+}
 
-const certificates = [
+const certificates: Certificate[] = [
   {
     title: "Fundamentos de Deep Learning",
     institution: "NVIDIA",
@@ -29,7 +38,8 @@ const certificates = [
 ]
 
 export function Certificates() {
-  const [selectedCertificate, setSelectedCertificate] = useState(null)
+  // Correct the type of selectedCertificate to be Certificate | null
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null)
 
   return (
     <section className="py-20">
@@ -39,7 +49,7 @@ export function Certificates() {
           <CertificateCard
             key={index}
             {...cert}
-            onClick={() => setSelectedCertificate(cert)}
+            onClick={() => setSelectedCertificate(cert)}  // Pass the certificate here
           />
         ))}
       </div>
@@ -58,7 +68,7 @@ export function Certificates() {
               </div>
               <Image 
                 src={selectedCertificate.image} 
-                alt={selectedCertificate.title} 
+                alt={`Imagen del certificado de ${selectedCertificate.title}`} 
                 width={600} 
                 height={400} 
                 className="w-full h-64 object-cover rounded-lg mb-4"
@@ -67,7 +77,6 @@ export function Certificates() {
               <p className="text-gray-500 dark:text-gray-500 mb-4">{selectedCertificate.date}</p>
               <p className="text-gray-700 dark:text-gray-300">{selectedCertificate.description}</p>
               
-            
               <div className="flex space-x-4 mt-4">
                 {selectedCertificate.links.map((link, index) => (
                   <a key={index} href={link.url} className="flex items-center text-blue-500 hover:underline">
@@ -85,13 +94,19 @@ export function Certificates() {
   )
 }
 
-function CertificateCard({ title, institution, date, image, onClick }) {
+function CertificateCard({ title, institution, date, image, onClick }: Certificate & { onClick: () => void }) {
   return (
     <div 
       className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl cursor-pointer"
       onClick={onClick}
     >
-      <Image src={image} alt={title} width={300} height={200} className="w-full h-48 object-cover" />
+      <Image 
+        src={image} 
+        alt={`Imagen del certificado de ${title}`} 
+        width={300} 
+        height={200} 
+        className="w-full h-48 object-cover" 
+      />
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{title}</h3>
         <p className="text-gray-600 dark:text-gray-400 mb-4">{institution}</p>
