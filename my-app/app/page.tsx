@@ -12,7 +12,7 @@ import { Footer } from '../components/Footer'
 import { Moon, Sun } from 'lucide-react'
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
