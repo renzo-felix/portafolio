@@ -1,6 +1,6 @@
 'use client'
 
-import { Code, Database, PenToolIcon as Tool, Server, Globe, Terminal } from 'lucide-react'
+import { Code, PenToolIcon as Globe, Terminal } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 const skills = [

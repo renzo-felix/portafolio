@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, Calendar } from 'lucide-react'
+import { MapPin, Calendar } from 'lucide-react'
 import Image from 'next/image'
 
 export function Education() {
